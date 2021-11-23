@@ -1,0 +1,66 @@
+package com.company;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Number: ");
+        String number = scan.next();
+        int length = number.length();
+        String product_sum = "";
+        String plain_sum = "";
+        int product_sum2 = 0;
+        int plain_sum2 = 0;
+        if (length % 2 == 0) { //If the number's length is even
+            for (int i = 0; i < length; i++) {
+                if (i % 2 == 0) {
+                    product_sum += (Character.getNumericValue(number.charAt(i)) * 2);
+                } else {
+                    plain_sum += number.charAt(i);
+                }
+            }
+        }
+
+        if (length % 2 != 0) { //If the number's length is odd
+            for (int i = 0; i < length; i++) {
+                if (i % 2 != 0) {
+                    product_sum += (Character.getNumericValue(number.charAt(i)) * 2); 
+                } else {
+                    plain_sum += number.charAt(i);
+                }
+            }
+        }
+
+        int product_sum_len = product_sum.length();
+        int plain_sum_len = plain_sum.length();
+
+        for (int i = 0; i < product_sum_len; i++) {
+            product_sum2 += Character.getNumericValue(product_sum.charAt(i));
+        }
+        for (int i = 0; i < plain_sum_len; i++) {
+            plain_sum2 += Character.getNumericValue(plain_sum.charAt(i));
+        }
+
+        int final_sum = product_sum2 + plain_sum2;
+
+        if (final_sum % 10 == 0) {
+            if (number.charAt(0) == '4') {
+                if (length == 15 || length == 16)  {
+                    System.out.print("VISA");
+                }
+            } else if (number.charAt(0) == '3' && (number.charAt(1) == '4' || number.charAt(1) == '7')) {
+                if (length == 15) {
+                    System.out.print("AMEX");
+                }
+            } else if (number.charAt(0) == '5' && 0 + Character.getNumericValue(number.charAt(1)) <=5) {
+                if (length ==16){
+                    System.out.print("MASTERCARD");
+                }
+            } else {
+                System.out.print("INVALID");
+            }
+        } else {
+            System.out.print("INVALID");
+        }
+    }
+}
